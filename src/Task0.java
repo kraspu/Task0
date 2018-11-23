@@ -14,7 +14,7 @@ public class Task0 {
 //        System.out.println(met2(1,3,5,2));
 //        met3(1,4,4);
 //        met4(0);
-//        System.out.println(met5(5,4,4));
+//        System.out.println(met5(5.,4.,4.));
 //        met6(-6);
 //        met7(3,3);
 //        met8(3,4,5);
@@ -27,7 +27,7 @@ public class Task0 {
 //        System.out.println(met15(3));
 //        System.out.println(met16(8.5,3.0));
 //        System.out.println(met17(6));
-//        met18(8);
+        met18(123);
 //        met19(2,4);
     }
 
@@ -64,9 +64,11 @@ public class Task0 {
         double x2;
         double d;
         d = Math.sqrt(b * b - 4 * a * c);
-        x1 = (-b + d) / (2 * a);
-        x2 = (-b - d) / (2 * a);
-        System.out.println("x1 = " + x1 + "\nx2 = " + x2);
+        if (d >= 0) {
+            x1 = (-b + d) / (2 * a);
+            x2 = (-b - d) / (2 * a);
+            System.out.println("x1 = " + x1 + "\nx2 = " + x2);
+        } else System.out.println(" d < 0");
     }
 
 //    Задание №4. Операторы сравнения. Условные операторы
@@ -86,8 +88,9 @@ public class Task0 {
 
 //    Задание №5. Операторы сравнения. Условные операторы
 //    Даны три числа. Не используя логические операторы, найдите сумму двух наибольших из них.
-    static int met5(int a, int b, int c){
-        int sum = (a >= b) ? ((b >= c) ? (a + b) : (a + c))
+    static double met5(double a, double b, double c){
+        double sum;
+        sum = (a >= b) ? ((b >= c) ? (a + b) : (a + c))
                            : ((a >= c) ? (b + a) : (b + c));
         return sum;
     }
@@ -251,11 +254,14 @@ public class Task0 {
 //    Задание №15. Циклы (for)
 //    Дано целое число N (N > 0). Найдите произведение N! = 1 * 2 * … * N.
     static int met15(int n) {
-        int fact;
-        fact = 1;
-        for (int i = 0; i < n; i++)
-            fact *= (i + 1);
-        return fact;
+        if (n > 0) {
+            int fact;
+            fact = 1;
+            for (int i = 0; i < n; i++)
+                fact *= (i + 1);
+            return fact;
+        }
+        else return -1;
     }
 
 //    Задание №16. Циклы (while)
@@ -263,34 +269,49 @@ public class Task0 {
 //    возможное количество отрезков длины B (без наложений). Не используя операции умножения
 //    и деления, найдите длину незанятой части отрезка A.
     static double met16(double a, double b) {
-        while (a > b) {
+        if (a > b) {
+        while (a >= b) {
             a -= b;
         }
-        return a;
+        return a;}
+        else return -1;
     }
 
 //    Задание №17. Циклы (while)
 //    Дано целое число N (N > 1). Найдите наименьшее целое число K, при котором выполняется
 //    неравенство 3 * K > N.
     static int met17(int n) {
+        if (n > 1) {
         int k;
         k = 0;
         while (3 * ++k <= n) ;
-        return k;
+        return k;}
+        else return -1;
     }
 
 //    Задание №18. Циклы (while)
 //    Дано целое число N (>0). Используя операции деления нацело и взятия остатка от деления,
 //    выведите все его цифры, начиная с самой правой (разряда единиц).
     static void met18(int n) {
-        int x;
-        String temp;
-        temp = "";
-        while(n != 0){
-            x = n % 2;
-            temp = x + temp;
-            n /= 2;
-        } System.out.print(temp);
+        if (n > 0) {
+            while (n > 0) {
+                System.out.print(n % 10);
+                n = (n - n % 10) / 10;
+            }
+        }
+
+        // ниже закоментен код перевода числа в двоичное число (не внимательно прочитал задание! =) )
+//        if (n > 0) {
+//            int x;
+//            String temp;
+//            temp = "";
+//            while (n != 0) {
+//                x = n % 2;
+//                temp = x + temp;
+//                n /= 2;
+//            }
+//            System.out.print(temp);
+//        }
     }
 
 //    Задание №19. Циклы
